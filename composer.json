@@ -1,16 +1,30 @@
 {
-    "name": "nunomaduro/skeleton-php",
+    "name": "underwork/banco-do-brasil-api-v2",
+    "version": "0.0.1",
+    "type": "library",
     "description": "A skeleton repository for my packages",
-    "keywords": ["php", "skeleton", "package"],
+    "keywords": [
+        "php",
+        "package",
+        "banco do brasil",
+        "api"
+    ],
     "license": "MIT",
     "authors": [
         {
-            "name": "Nuno Maduro",
-            "email": "enunomaduro@gmail.com"
+            "name": "Lucas Pinheiro",
+            "email": "lucas.pinheiro@underwork.com.br",
+            "role": "Maintainer"
+        },
+        {
+            "name": "Luiz Cristino",
+            "email": "luiz.cristino@underwork.com.br",
+            "role": "Maintainer"
         }
     ],
     "require": {
-        "php": "^8.3.0"
+        "php": "^8.3.0",
+        "guzzlehttp/guzzle": "^7.9"
     },
     "require-dev": {
         "laravel/pint": "^1.18.1",
@@ -22,7 +36,7 @@
     },
     "autoload": {
         "psr-4": {
-            "NunoMaduro\\SkeletonPhp\\": "src/"
+            "UnderWork\\BancoDoBrasilApiV2\\": "src/"
         }
     },
     "autoload-dev": {
