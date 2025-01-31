@@ -1,8 +1,9 @@
 {
     "name": "underwork/banco-do-brasil-api-v2",
+    "homepage": "https://github.com/underwork-productions/banco-do-brasil-api-v2",
     "version": "0.0.1",
     "type": "library",
-    "description": "A skeleton repository for my packages",
+    "description": "SDK PHP para a API v2 do Banco do Brasil",
     "keywords": [
         "php",
         "package",
@@ -14,16 +15,18 @@
         {
             "name": "Lucas Pinheiro",
             "email": "lucas.pinheiro@underwork.com.br",
+            "homepage": "https://www.underwork.com.br/",
             "role": "Maintainer"
         },
         {
             "name": "Luiz Cristino",
             "email": "luiz.cristino@underwork.com.br",
+            "homepage": "https://www.underwork.com.br/",
             "role": "Maintainer"
         }
     ],
     "require": {
-        "php": "^8.3.0",
+        "php": ">=8.3.0",
         "guzzlehttp/guzzle": "^7.9",
         "kamermans/guzzle-oauth2-subscriber": "^1.1",
         "league/pipeline": "^1.0",
