@@ -9,13 +9,14 @@ use UnderWork\BancoDoBrasilApiV2\Enums\Environment;
 
 trait HasPixBaseUrl
 {
-    use HasPixProductionUrl, HasPixSandboxUrl;
+    use HasPixProductionUrl, HasPixSandboxUrl, HasPixUnsecureSandboxUrl;
 
     protected function getBaseUrl(?BBConfiguration $configuration = null): string
     {
         return match ($configuration?->environment) {
             Environment::PRODUCTION => $this->getProductionUrl(),
-            default => $this->getSandboxUrl(),
+            Environment::SANDBOX => $this->getSandboxUrl(),
+            default => $this->getUnsecureSandboxUrl()
         };
     }
 }

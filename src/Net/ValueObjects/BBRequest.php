@@ -8,25 +8,21 @@ namespace UnderWork\BancoDoBrasilApiV2\Net\ValueObjects;
  * @since 0.0.1
  *
  * @property string url
- * @property string method
- * @property array options
+ *
+ * @proe
  */
 final class BBRequest
 {
     public function __construct(
-        private string $method,
-        private string $baseUrl,
-        private string $uri = '',
-        private array $body = [],
-        private array $options = [],
+        public readonly string $method,
+        public readonly string $baseUrl,
+        public readonly string $uri = '',
+        public readonly array $body = [],
+        public readonly array $options = [],
     ) {}
 
     public function __get($name)
     {
-        if (property_exists($this, $name)) {
-            return $this->$name;
-        }
-
         if (method_exists($this, "__$name")) {
             return $this->{"__$name"}();
         }

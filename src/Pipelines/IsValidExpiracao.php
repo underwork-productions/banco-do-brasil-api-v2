@@ -11,8 +11,8 @@ class IsValidExpiracao implements StageInterface
 {
     public function __invoke($payload)
     {
-        if (! v::intVal()->between(0, 2147483647)->validate($payload->expiracao)) {
-            throw new \InvalidArgumentException('Expiração deve ser um valor entre 0 e 2147483647.');
+        if (! v::intVal()->between(1, 2147483647)->validate($payload->expiracao)) {
+            throw new \InvalidArgumentException('Expiração deve ser um valor entre 1 e 2147483647.');
         }
 
         return $payload;

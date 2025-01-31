@@ -17,6 +17,9 @@ abstract class BBApi
 
     abstract protected function getSandboxUrl(): string;
 
+    /** This returns the api url that doesn't requires mTLS */
+    abstract protected function getUnsecureSandboxUrl(): string;
+
     protected BBHttpClientInterface $httpClient;
 
     protected BBConfiguration $configuration;

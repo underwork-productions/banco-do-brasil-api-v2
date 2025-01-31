@@ -8,4 +8,5 @@ enum Environment: string
 {
     case SANDBOX = 'sandbox';
     case PRODUCTION = 'production';
+    case NO_mTLS = 'no-mtls';
 }

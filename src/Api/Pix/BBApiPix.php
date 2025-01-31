@@ -23,14 +23,4 @@ class BBApiPix extends BBApi
                 ->build()
         );
     }
-
-    public function cancel(string $txId)
-    {
-        return $this->httpClient->send(
-            BBRequestBuilder::baseUrl($this->getBaseUrl())
-                ->method('PATCH')
-                ->uri("/cob/{$txId}")
-                ->build()
-        );
-    }
 }
