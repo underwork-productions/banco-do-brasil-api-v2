@@ -13,7 +13,7 @@ class BBApiPix extends BBApi
 {
     use Pix\HasPixBaseUrl;
 
-    public function charge(string $txId, CobrancaImediata $payload)
+    public function criarCobrancaImediata(string $txId, CobrancaImediata $payload)
     {
         return $this->httpClient->send(
             BBRequestBuilder::baseUrl($this->getBaseUrl())
