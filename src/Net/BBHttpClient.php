@@ -7,6 +7,7 @@ namespace UnderWork\BancoDoBrasilApiV2\Net;
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
+use GuzzleHttp\Psr7\Uri;
 use GuzzleHttp\RetryMiddleware;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -48,14 +49,19 @@ class BBHttpClient implements BBHttpClientContract
 
         // Configure automatic retry
         $stack = HandlerStack::create();
+        $stack->push(Middleware::mapRequest(
+            fn (RequestInterface $request) => $request->withUri(
+                Uri::withQueryValue($request->getUri(), 'gw-dev-app-key', $configuration->developerApplicationKey)
+            )
+        ));
         $stack->push(Middleware::retry($decider, $delay));
 
         $this->client = new HttpClient([
             'handler' => $stack,
             'headers' => [
-                'gw-dev-app-key' => $configuration->developerApplicationKey,
                 'Content-Type' => 'application/json',
                 'accept' => 'application/json',
+                'Authorization' => $configuration->clientSecret,
             ],
         ]);
     }

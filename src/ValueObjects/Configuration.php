@@ -20,23 +20,14 @@ use UnderWork\BancoDoBrasilApiV2\Enums\Environment;
 final class Configuration implements BBConfiguration
 {
     public function __construct(
-        private string $developerApplicationKey,
-        private string $clientId,
-        private string $clientSecret,
-        private Environment $environment = Defaults::DEFAULT_ENVIRONMENT,
-        private int $maxRetries = Defaults::DEFAULT_MAX_RETRIES
+        public readonly string $developerApplicationKey,
+        public readonly string $clientId,
+        public readonly string $clientSecret,
+        public readonly Environment $environment = Defaults::DEFAULT_ENVIRONMENT,
+        public readonly int $maxRetries = Defaults::DEFAULT_MAX_RETRIES
     ) {
         if ($this->maxRetries < 0) {
             throw new \InvalidArgumentException('Max retries must be greater than or equal to 0.');
         }
-    }
-
-    public function __get(string $name)
-    {
-        if (property_exists($this, $name)) {
-            return $this->$name;
-        }
-
-        throw new \InvalidArgumentException('Unknown property: '.$name);
     }
 }
