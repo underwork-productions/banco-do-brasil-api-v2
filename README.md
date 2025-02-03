@@ -1,47 +1,52 @@
-<p align="center">
-    <img src="https://raw.githubusercontent.com/nunomaduro/skeleton-php/master/docs/example.png" height="300" alt="Skeleton Php">
-    <p align="center">
-        <a href="https://github.com/nunomaduro/skeleton-php/actions"><img alt="GitHub Workflow Status (master)" src="https://github.com/nunomaduro/skeleton-php/actions/workflows/tests.yml/badge.svg"></a>
-        <a href="https://packagist.org/packages/nunomaduro/skeleton-php"><img alt="Total Downloads" src="https://img.shields.io/packagist/dt/nunomaduro/skeleton-php"></a>
-        <a href="https://packagist.org/packages/nunomaduro/skeleton-php"><img alt="Latest Version" src="https://img.shields.io/packagist/v/nunomaduro/skeleton-php"></a>
-        <a href="https://packagist.org/packages/nunomaduro/skeleton-php"><img alt="License" src="https://img.shields.io/packagist/l/nunomaduro/skeleton-php"></a>
-    </p>
-</p>
+# Banco do Brasil API v2
 
-------
-This package provides a wonderful **PHP Skeleton** to start building your next package idea.
+Este pacote foi criado com o intuito de facilitar a conexão com a API v2 fornecida pelo Banco do Brasil.
 
-> **Requires [PHP 8.3+](https://php.net/releases/)**
+## Instalação
 
-⚡️ Create your package using [Composer](https://getcomposer.org):
-
-```bash
-composer create-project nunomaduro/skeleton-php --prefer-source PackageName
+```sh
+composer require underwork/banco-do-brasil-api-v2
 ```
 
-🧹 Keep a modern codebase with **Pint**:
-```bash
-composer lint
+## Utilização
+
+```php
+<?php
+
+use UnderWork\BancoDoBrasilApiV2\ValueObjects\Configuration;
+use UnderWork\BancoDoBrasilApiV2\ValueObjects\Pix\CobrancaImediata;
+
+/**
+ * Cria arquivo de configuração. Necessário para informar as credencias de acesso a API.
+ */
+$configuracao = new Configuration(
+    developerApplicationKey: '<secret>',
+    clientId: '<secret>',
+    clientSecret: '<secret>',
+);
+
+/**
+ * Cria a api pix utilizando as configurações informadas.
+ */
+$pix = new BBApiPix($configuracao);
+
+/**
+ * A classe CobrancaImediata já faz a validação inicial dos valores
+ * antes do envio para o banco do brasil.
+ *
+ * As validações podem ser encontradas na documentação oficial do Banco do Brasil.
+ * https://apoio.developers.bb.com.br/referency/post/6483836ddcefbe00128886ce
+ */
+$cobranca = new CobrancaImediata(
+    valor: '0.00',
+    chave: 'chave pix do recebedor',
+);
+
+$pix->criarCobrancaImediata('<Seu txId aqui>', $cobranca);
 ```
 
-✅ Run refactors using **Rector**
-```bash
-composer refacto
-```
+### Notas
 
-⚗️ Run static analysis using **PHPStan**:
-```bash
-composer test:types
-```
+- O pacote está sob construção então ainda não possui muitos endpoints mapeados, conforme a nossa necessidade ou apoio da comunidade novos endpoints serão adicionados.
 
-✅ Run unit tests using **PEST**
-```bash
-composer test:unit
-```
-
-🚀 Run the entire test suite:
-```bash
-composer test
-```
-
-**Skeleton PHP** was created by **[Nuno Maduro](https://twitter.com/enunomaduro)** under the **[MIT license](https://opensource.org/licenses/MIT)**.
+- Este pacote não realiza nenhuma configuração de mTLS, já que essa configuração deve ser realizada no servidor através do Apache, NGINX ou similares
