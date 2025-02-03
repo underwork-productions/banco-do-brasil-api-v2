@@ -38,9 +38,9 @@ final class CobrancaImediata implements BBSerialize
     public readonly string|ModalidadeAgente|NullEnum|null $retiradaModalidadeAgente;
 
     /**
-     * @param  int  $expiracao  Tempo de vida da cobrança, em segundos, a partir da data de criação. Deve maior do que zero. Se não enviado (em branco), assume 86.400 segundos, ou 24 horas (default). Máximo: 2.147.483.648 segundos.
      * @param  string  $valor  Valor original da cobrança. Deve ser informado, com casas decimais, mesmo que seja 0.
      * @param  string  $chave  Chave Pix do usuário recebedor.
+     * @param  int|null  $expiracao  Tempo de vida da cobrança, em segundos, a partir da data de criação. Deve maior do que zero. Se não enviado (em branco), assume 86.400 segundos, ou 24 horas (default). Máximo: 2.147.483.648 segundos.
      * @param  string|null  $devedorNome  Nome do devedor, máximo 200 caracteres. Se preenchido, o CPF ou o CNPJ deve ser informado.
      * @param  string|null  $devedorDocumento  Deve ser preenchido com o CNPJ ou CPF do devedor. Se preenchido, o nome deve ser informado.
      * @param  int|null  $locId  Id do location. Deve ser informado se o usuário recebedor desejar utilizar um location previamente reservado, do tipo `cob`.
@@ -56,9 +56,9 @@ final class CobrancaImediata implements BBSerialize
      * @return void
      */
     public function __construct(
-        public readonly int $expiracao,
         public readonly string $valor,
         public readonly string $chave,
+        public readonly ?int $expiracao = 86400,
         public readonly ?string $devedorNome = null,
         public readonly ?int $locId = null,
         public readonly ?string $solicitacaoPagador = null,
