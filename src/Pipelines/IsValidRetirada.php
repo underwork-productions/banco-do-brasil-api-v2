@@ -6,7 +6,7 @@ namespace UnderWork\BancoDoBrasilApiV2\Pipelines;
 
 use League\Pipeline\StageInterface;
 use Respect\Validation\Validator as v;
-use UnderWork\BancoDoBrasilApiV2\Enums\PixTipoRetirada;
+use UnderWork\BancoDoBrasilApiV2\Enums\Pix\TipoRetirada;
 
 class IsValidRetirada implements StageInterface
 {
@@ -26,7 +26,7 @@ class IsValidRetirada implements StageInterface
                 throw new \InvalidArgumentException('Valor de retirada deve ser um número com duas casas decimais e maior ou igual a zero.');
             }
 
-            if ($payload->tipoRetirada === PixTipoRetirada::Saque) {
+            if ($payload->tipoRetirada === TipoRetirada::Saque) {
             }
         }
 

@@ -8,7 +8,7 @@ use League\Pipeline\Pipeline;
 use UnderWork\BancoDoBrasilApiV2\Contracts\BBSerialize;
 use UnderWork\BancoDoBrasilApiV2\Enums\ModalidadeAgente;
 use UnderWork\BancoDoBrasilApiV2\Enums\ModalidadeAlteracao;
-use UnderWork\BancoDoBrasilApiV2\Enums\PixTipoRetirada;
+use UnderWork\BancoDoBrasilApiV2\Enums\Pix\TipoRetirada;
 use UnderWork\BancoDoBrasilApiV2\Enums\TipoDocumento;
 use UnderWork\BancoDoBrasilApiV2\Pipelines\IsRequiredDocumentoDevedor;
 use UnderWork\BancoDoBrasilApiV2\Pipelines\IsValidDocumentoDevedor;
@@ -31,7 +31,7 @@ final class CobrancaImediata implements BBSerialize
 
     public readonly string|ModalidadeAlteracao|NullEnum|null $modalidadeAlteracao;
 
-    public readonly string|PixTipoRetirada|NullEnum|null $tipoRetirada;
+    public readonly string|TipoRetirada|NullEnum|null $tipoRetirada;
 
     public readonly string|ModalidadeAlteracao|NullEnum|null $retiradaModalidadeAlteracao;
 
@@ -48,7 +48,7 @@ final class CobrancaImediata implements BBSerialize
      * @param  string|ModalidadeAlteracao|NullEnum|null  $modalidadeAlteracao  Determina se o valor final da cobrança pode ser alterado pelo usuário pagador. Se omitido, assume valor 0.
      * @param  string|null  $solicitacaoPagador  Opcional, representa um texto, a ser apresentado ao usuário pagador para que ele possa digital uma informação correlata, em formato livre, a ser enviada ao usuário recebedor. Máximo 140 caracteres.
      * @param  array<int,array<string,string>>|null  $infoAdicionais  Cada informação adicional será apresentada ao usuário pagador. Máximo 50 itens.
-     * @param  string|PixTipoRetirada|NullEnum|null  $tipoRetirada  Estrutura opcional; se utilizada, a cobrança deixa de considerada Pix comum e passa à categoria de Pix Saque e Pix Troco.
+     * @param  string|TipoRetirada|NullEnum|null  $tipoRetirada  Estrutura opcional; se utilizada, a cobrança deixa de considerada Pix comum e passa à categoria de Pix Saque e Pix Troco.
      * @param  string|null  $retiradaValor  Valor do saque/troco a ser realizado. Deve ser informado, com casas decimais, mesmo que seja 0.
      * @param  string|ModalidadeAlteracao|NullEnum|null  $retiradaModalidadeAlteracao  Determina se o valor final da cobrança pode ser alterado pelo usuário pagador. Se omitido, assume valor 0.
      * @param  string|ModalidadeAgente|NullEnum|null  $retiradaModalidadeAgente  Indica a modalidade do agente por meio da qual se dá a facilitação do serviço de saque
@@ -80,7 +80,7 @@ final class CobrancaImediata implements BBSerialize
 
         $this->retiradaModalidadeAlteracao = ModalidadeAlteracao::tryFromEnhanced($retiradaModalidadeAlteracao);
 
-        $this->tipoRetirada = PixTipoRetirada::tryFromEnhanced($tipoRetirada);
+        $this->tipoRetirada = TipoRetirada::tryFromEnhanced($tipoRetirada);
 
         $this->retiradaModalidadeAgente = ModalidadeAgente::tryFromEnhanced($retiradaModalidadeAgente);
 

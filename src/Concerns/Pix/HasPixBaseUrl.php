@@ -14,8 +14,8 @@ trait HasPixBaseUrl
     protected function getBaseUrl(?BBConfiguration $configuration = null): string
     {
         return match ($configuration?->environment) {
-            Environment::PRODUCTION => $this->getProductionUrl(),
-            Environment::SANDBOX => $this->getSandboxUrl(),
+            Environment::Production => $this->getProductionUrl(),
+            Environment::Sandbox => $this->getSandboxUrl(),
             default => $this->getUnsecureSandboxUrl()
         };
     }
