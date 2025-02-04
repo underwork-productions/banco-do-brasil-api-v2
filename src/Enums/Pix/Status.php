@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace UnderWork\BancoDoBrasilApiV2\Enums\Pix;
 
+/**
+ * @since 0.0.2
+ */
 enum Status: string
 {
     /** indica que a cobrança ainda não foi paga nem removida */
