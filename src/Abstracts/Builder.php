@@ -14,13 +14,22 @@ abstract class Builder
      *
      * @since 0.0.1
      *
+     * @param  array<mixed>  $arguments
      * @return Builder
      *
      * @throws \Exception
      */
-    public static function __callStatic($name, $arguments)
+    public static function __callStatic(string $name, array $arguments)
     {
+        $reflection = new \ReflectionClass(static::class);
+        $constructor = $reflection->getConstructor();
+
+        if ($constructor && $constructor->getNumberOfRequiredParameters() > 0) {
+            throw new \Exception('Unsafe usage of new static(): '.static::class.' requires constructor arguments.');
+        }
+
         if (property_exists(static::class, $name)) {
+            // @phpstan-ignore-next-line
             return (new static)->__setProperty($name, ...$arguments);
         }
 
@@ -32,11 +41,12 @@ abstract class Builder
      *
      * @since 0.0.1
      *
+     * @param  array<mixed>  $arguments
      * @return Builder
      *
      * @throws \Exception
      */
-    public function __call($name, $arguments)
+    public function __call(string $name, array $arguments)
     {
         if (property_exists(static::class, $name)) {
             return $this->__setProperty($name, ...$arguments);

@@ -8,5 +8,8 @@ use JsonSerializable;
 
 interface BBSerialize extends JsonSerializable
 {
+    /**
+     * @return array<string, mixed>
+     */
     public function toArray(): array;
 }

@@ -30,8 +30,14 @@ class BBRequestBuilder extends Builder
 
     protected string $method = 'GET';
 
+    /**
+     * @var array<string, mixed>
+     */
     protected array $body = [];
 
+    /**
+     * @var array<string, mixed>
+     */
     protected array $options = [];
 
     public function build(): BBRequest
