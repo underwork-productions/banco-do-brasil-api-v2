@@ -72,7 +72,7 @@ foreach (new RecursiveIteratorIterator(new RecursiveDirectoryIterator($directory
         $mixinTag = "@mixin $helperClass";
         if ($doc && strpos($doc, $mixinTag) === false) {
             // Append @mixin to docblock
-            $newDoc = preg_replace('/\\*\\//', " * $mixinTag\\n */", $doc, 1);
+            $newDoc = preg_replace('/\\*\\//', " * $mixinTag\n */", $doc, 1);
             $code = str_replace($doc, $newDoc, $code);
             file_put_contents($file->getPathname(), $code);
         } elseif (! $doc) {
