@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace UnderWork\BancoDoBrasilApiV2\Concerns\Pix;
+namespace UnderWork\BancoDoBrasilApiV2\Concerns\BBPay;
 
 use UnderWork\BancoDoBrasilApiV2\Contracts\BBConfiguration;
 use UnderWork\BancoDoBrasilApiV2\Enums\Environment;
 
-trait HasPixBaseUrl
+trait HasBBPayBaseUrl
 {
     use HasProductionUrl, HasSandboxUrl, HasUnsecureSandboxUrl;
 

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace UnderWork\BancoDoBrasilApiV2\Concerns\Boleto;
 
-trait HasBoletoProductionUrl
+trait HasProductionUrl
 {
     protected function getProductionUrl(): string
     {

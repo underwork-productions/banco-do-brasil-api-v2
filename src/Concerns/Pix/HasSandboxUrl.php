@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace UnderWork\BancoDoBrasilApiV2\Concerns\Pix;
 
-trait HasPixSandboxUrl
+trait HasSandboxUrl
 {
     protected function getSandboxUrl(): string
     {

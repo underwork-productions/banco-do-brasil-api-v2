@@ -9,7 +9,7 @@ use UnderWork\BancoDoBrasilApiV2\Enums\Environment;
 
 trait HasBoletoBaseUrl
 {
-    use HasBoletoProductionUrl, HasBoletoSandboxUrl, HasBoletoUnsecureSandboxUrl;
+    use HasProductionUrl, HasSandboxUrl, HasUnsecureSandboxUrl;
 
     protected function getBaseUrl(?BBConfiguration $configuration = null): string
     {
