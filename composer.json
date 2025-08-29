@@ -71,6 +71,9 @@
             "@test:lint",
             "@test:types",
             "@test:unit"
+        ],
+        "post-autoload-dump": [
+            "@php builder-generator.php"
         ]
     }
 }
