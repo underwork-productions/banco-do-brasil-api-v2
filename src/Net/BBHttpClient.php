@@ -40,6 +40,9 @@ class BBHttpClient implements BBHttpClientContract
                 'Content-Type' => 'application/json',
                 'accept' => 'application/json',
             ],
+            'verify' => $configuration->verify,
+            'cert' => $configuration->cert,
+            'ssl_key' => $configuration->sslKey,
         ]);
     }
 
@@ -101,6 +104,10 @@ class BBHttpClient implements BBHttpClientContract
         }
 
         $response = $this->client->request($request->method, $request->url, $options);
+
+        var_dump('status code:'.$response->getStatusCode());
+
+        var_dump((string) $response->getBody());
 
         return json_decode((string) $response->getBody());
     }

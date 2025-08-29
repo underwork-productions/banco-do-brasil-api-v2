@@ -8,8 +8,6 @@ namespace UnderWork\BancoDoBrasilApiV2\Net\ValueObjects;
  * @since 0.0.1
  *
  * @property string url
- *
- * @proe
  */
 final class BBRequest
 {

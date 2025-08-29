@@ -24,7 +24,10 @@ final class Configuration implements BBConfiguration
         public readonly string $clientId,
         public readonly string $clientSecret,
         public readonly Environment $environment = Defaults::DEFAULT_ENVIRONMENT,
-        public readonly int $maxRetries = Defaults::DEFAULT_MAX_RETRIES
+        public readonly int $maxRetries = Defaults::DEFAULT_MAX_RETRIES,
+        public readonly ?string $cert = null,
+        public readonly ?string $verify = null,
+        public readonly ?string $sslKey = null,
     ) {
         if ($this->maxRetries < 0) {
             throw new \InvalidArgumentException('Max retries must be greater than or equal to 0.');
