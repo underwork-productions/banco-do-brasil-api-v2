@@ -42,6 +42,7 @@ class Repasse implements BBSerialize
     {
         return [
             'tipoValorRepasse' => $this->tipoValorRepasse,
+            'recebedores' => $this->recebedores,
         ];
     }
 
