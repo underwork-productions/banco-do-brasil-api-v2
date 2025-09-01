@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace UnderWork\BancoDoBrasilApiV2\ValueObjects\BBPay\Solicitacao;
 
-use League\Pipeline\Pipeline;
 use UnderWork\BancoDoBrasilApiV2\Api\BBPay\Solicitacao\Objects\Devedor;
 use UnderWork\BancoDoBrasilApiV2\Api\BBPay\Solicitacao\Objects\FormaPagamento;
 use UnderWork\BancoDoBrasilApiV2\Api\BBPay\Solicitacao\Objects\Geral;
@@ -31,19 +30,25 @@ final class CriarSolicitacao implements BBSerialize
         public readonly ?Repasse $repasse = null,
     ) {
         // TODO: add pipelines for checking
-
-        (new Pipeline)
-            ->process($this);
     }
 
     public function toArray(): array
     {
         $array = [
             'geral' => $this->geral->toArray(),
+            'vencimento' => $this->vencimento->toArray(),
         ];
 
         if (! is_null($this->devedor)) {
             $array['devedor'] = $this->devedor->toArray();
+        }
+
+        if (! is_null($this->repasse)) {
+            $array['repasse'] = $this->repasse->toArray();
+        }
+
+        if (! is_null($this->formasPagamento)) {
+            $array['formasPagamento'] = $this->formasPagamento;
         }
 
         return $array;

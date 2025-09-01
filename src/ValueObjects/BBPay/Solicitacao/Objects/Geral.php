@@ -16,6 +16,16 @@ class Geral implements BBSerialize
 {
     use HasBuilder;
 
+    /**
+     * @param  int  $numeroConvenio  Número do convênio do cliente com o BB Pay. É obrigatório para todos os recursos
+     * @param  string  $urlCallback  URL na qual o cliente será redirecionado após a conclusão do pagamento.
+     * @param  null|bool  $pagamentoUnico  Indica se o pagamento pode ou não ser pago mais de uma vez. Se aceitar Open Finance ou Boleto, deve ser true.
+     * @param  null|string  $timestampLimiteSolicitacao  Data e hora limite máximo para pagamento da solicitação de pagamento (timestamp). Se não informado, sistema assumirá como 365 dias.
+     * @param  null|float  $valorSolicitacao  Valor que o cliente deseja receber do pagador, quando não informado será definido pelo pagador. Obrigatório para pagamentoUnico = true
+     * @param  null|string  $descricaoSolicitacaoPagamento  Descrição da solicitação do pagamento. Dado que pode estar visível ao pagador.
+     * @param  null|string  $codigoConciliacaoSolicitacao  Campo utilizado para armazenar um código único que referencie a sua venda em seu sistema, possibilitando uma correspondência direta entre a sua venda e a solicitação gerada. A conciliação de registros entre seu sistema e o BB Pay pode ser realizada com o uso deste campo ou com o número da solicitação.
+     * @return void
+     */
     public function __construct(
         public readonly int $numeroConvenio,
         public readonly string $urlCallback,
