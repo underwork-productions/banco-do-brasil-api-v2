@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace UnderWork\BancoDoBrasilApiV2\ValueObjects\BBPay\Solicitacao;
 
-use UnderWork\BancoDoBrasilApiV2\Api\BBPay\Solicitacao\Objects\Devedor;
-use UnderWork\BancoDoBrasilApiV2\Api\BBPay\Solicitacao\Objects\FormaPagamento;
-use UnderWork\BancoDoBrasilApiV2\Api\BBPay\Solicitacao\Objects\Geral;
-use UnderWork\BancoDoBrasilApiV2\Api\BBPay\Solicitacao\Objects\Repasse;
-use UnderWork\BancoDoBrasilApiV2\Api\BBPay\Solicitacao\Objects\Vencimento;
+
 use UnderWork\BancoDoBrasilApiV2\Contracts\BBSerialize;
+use UnderWork\BancoDoBrasilApiV2\ValueObjects\BBPay\Solicitacao\Objects\Devedor;
+use UnderWork\BancoDoBrasilApiV2\ValueObjects\BBPay\Solicitacao\Objects\FormaPagamento;
+use UnderWork\BancoDoBrasilApiV2\ValueObjects\BBPay\Solicitacao\Objects\Geral;
+use UnderWork\BancoDoBrasilApiV2\ValueObjects\BBPay\Solicitacao\Objects\Repasse;
+use UnderWork\BancoDoBrasilApiV2\ValueObjects\BBPay\Solicitacao\Objects\Vencimento;
 
 /**
  * @since 0.0.3

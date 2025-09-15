@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace UnderWork\BancoDoBrasilApiV2\Api\BBPay\Solicitacao\Objects;
+namespace UnderWork\BancoDoBrasilApiV2\ValueObjects\BBPay\Solicitacao\Objects;
 
 use UnderWork\BancoDoBrasilApiV2\Contracts\BBSerialize;
 use UnderWork\BancoDoBrasilApiV2\Enums\BBPay\TipoFormaPagamento;
