@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace UnderWork\BancoDoBrasilApiV2\Net;
 
 use GuzzleHttp;
+use GuzzleHttp\Exception\GuzzleException;
 use kamermans\OAuth2\GrantType\ClientCredentials;
 use kamermans\OAuth2\OAuth2Middleware;
 use Psr\Http\Message\RequestInterface;
@@ -63,7 +64,7 @@ class BBHttpClient implements BBHttpClientContract
     private function createInjectQueryParamMiddleware(BBConfiguration $configuration)
     {
         return GuzzleHttp\Middleware::mapRequest(
-            fn (RequestInterface $request) => $request->withUri(
+            fn(RequestInterface $request) => $request->withUri(
                 GuzzleHttp\Psr7\Uri::withQueryValue($request->getUri(), 'gw-dev-app-key', $configuration->developerApplicationKey)
             )
         );
@@ -95,6 +96,12 @@ class BBHttpClient implements BBHttpClientContract
         return GuzzleHttp\Middleware::retry($decider, $delay);
     }
 
+    /**
+     *
+     * @param BBRequest $request
+     * @return object {statusCode: int, body: mixed, headers: list<list<string>>}
+     * @throws GuzzleException
+     */
     public function send(BBRequest $request)
     {
         $options = $request->options;
@@ -105,10 +112,23 @@ class BBHttpClient implements BBHttpClientContract
 
         $response = $this->client->request($request->method, $request->url, $options);
 
-        var_dump('status code:'.$response->getStatusCode());
+        $status = $response->getStatusCode();
+        $rawBody = (string) $response->getBody();
 
-        var_dump((string) $response->getBody());
+        // Attempt JSON decode but fall back to raw string
+        $decoded = null;
+        if ($rawBody !== '') {
+            try {
+                $decoded = json_decode($rawBody, false, 512, JSON_THROW_ON_ERROR);
+            } catch (\JsonException $e) {
+                // keep $decoded as null
+            }
+        }
 
-        return json_decode((string) $response->getBody());
+        return (object) [
+            'statusCode' => $status,
+            'body' => $decoded ?? $rawBody,
+            'headers' => $response->getHeaders(),
+        ];
     }
 }
