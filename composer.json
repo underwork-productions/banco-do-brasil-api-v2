@@ -1,7 +1,7 @@
 {
     "name": "underwork/banco-do-brasil-api-v2",
     "homepage": "https://github.com/underwork-productions/banco-do-brasil-api-v2",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "type": "library",
     "description": "SDK PHP para a API v2 do Banco do Brasil",
     "keywords": [
