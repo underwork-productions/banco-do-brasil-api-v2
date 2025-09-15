@@ -8,6 +8,6 @@ trait HasSandboxUrl
 {
     protected function getSandboxUrl(): string
     {
-        return 'https://api-bbpay.hm.bb.com.br/checkout/v2';
+        return 'https://checkout.mtls.api.hm.bb.com.br/v2';
     }
 }

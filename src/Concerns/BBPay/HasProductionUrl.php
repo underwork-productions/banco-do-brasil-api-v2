@@ -8,7 +8,6 @@ trait HasProductionUrl
 {
     protected function getProductionUrl(): string
     {
-        // TODO: Find the correct URL
-        return '';
+        return 'https://checkout.mtls.api.bb.com.br/v2';
     }
 }
