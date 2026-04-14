@@ -28,16 +28,16 @@ class Devedor implements BBSerialize
      */
     public function __construct(
         $tipoDocumento,
-        public readonly int $numeroDocumento,
-        public readonly ?int $cep = null,
+        public readonly string $numeroDocumento,
+        public readonly ?string $cep = null,
         public readonly ?string $endereco = null,
         public readonly ?string $bairro = null,
         public readonly ?string $cidade = null,
         public readonly ?string $uf = null,
         public readonly ?string $email = null,
-        public readonly ?int $dddTelefone = null,
-        public readonly ?int $telefone = null,
-        public readonly ?int $cpfRepresentanteEmpresa = null,
+        public readonly ?string $dddTelefone = null,
+        public readonly ?string $telefone = null,
+        public readonly ?string $cpfRepresentanteEmpresa = null,
     ) {
         $this->tipoDocumento($tipoDocumento);
     }
