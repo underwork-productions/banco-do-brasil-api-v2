@@ -38,7 +38,7 @@ class Geral implements BBSerialize
 
     public function toArray(): array
     {
-        return [
+        return array_filter([
             'numeroConvenio' => $this->numeroConvenio,
             'urlCallback' => $this->urlCallback,
             'pagamentoUnico' => $this->pagamentoUnico,
@@ -46,7 +46,7 @@ class Geral implements BBSerialize
             'valorSolicitacao' => $this->valorSolicitacao,
             'descricaoSolicitacaoPagamento' => $this->descricaoSolicitacaoPagamento,
             'codigoConciliacaoSolicitacao' => $this->codigoConciliacaoSolicitacao,
-        ];
+        ], fn($value) => ! is_null($value) && ! (is_string($value) && empty(trim($value))));
     }
 
     public function jsonSerialize(): mixed

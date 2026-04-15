@@ -51,7 +51,7 @@ class Devedor implements BBSerialize
 
     public function toArray(): array
     {
-        return [
+        return array_filter([
             'tipoDocumento' => $this->tipoDocumento->value,
             'numeroDocumento' => $this->numeroDocumento,
             'cep' => $this->cep,
@@ -63,7 +63,7 @@ class Devedor implements BBSerialize
             'dddTelefone' => $this->dddTelefone,
             'telefone' => $this->telefone,
             'cpfRepresentanteEmpresa' => $this->cpfRepresentanteEmpresa,
-        ];
+        ], fn($value) => ! is_null($value) && ! (is_string($value) && empty(trim($value))));
     }
 
     public function jsonSerialize(): mixed
