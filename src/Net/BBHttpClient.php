@@ -56,6 +56,10 @@ class BBHttpClient implements BBHttpClientContract
             'client_secret' => $configuration->clientSecret,
         ];
 
+        if ($configuration->scope !== null && $configuration->scope !== '') {
+            $oAuthConfig['scope'] = $configuration->scope;
+        }
+
         $grantType = new ClientCredentials($oAuthClient, $oAuthConfig);
 
         return new OAuth2Middleware($grantType);

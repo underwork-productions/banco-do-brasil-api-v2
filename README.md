@@ -24,6 +24,19 @@ $configuracao = new Configuration(
     clientId: '<secret>',
     clientSecret: '<secret>',
 );
+```
+
+Caso a API exija escopos (`scope`) específicos na autenticação OAuth, informe-os
+através do parâmetro `scope`. Os escopos devem ser separados por espaço, conforme
+a especificação OAuth 2.0 e a documentação do Banco do Brasil.
+
+```php
+$configuracao = new Configuration(
+    developerApplicationKey: '<secret>',
+    clientId: '<secret>',
+    clientSecret: '<secret>',
+    scope: 'cob.read cob.write pix.read pix.write',
+);
 
 /**
  * Cria a api pix utilizando as configurações informadas.
