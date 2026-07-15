@@ -49,7 +49,7 @@ final class CriarSolicitacao implements BBSerialize
         }
 
         if (! is_null($this->formasPagamento)) {
-            $array['formasPagamento'] = array_map(fn(FormaPagamento $forma) => $forma->toArray(), $this->formasPagamento);
+            $array['formasPagamento'] = array_map(fn (FormaPagamento $forma) => $forma->toArray(), $this->formasPagamento);
         }
 
         return $array;

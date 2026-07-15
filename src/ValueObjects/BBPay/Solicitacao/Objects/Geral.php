@@ -46,7 +46,7 @@ class Geral implements BBSerialize
             'valorSolicitacao' => $this->valorSolicitacao,
             'descricaoSolicitacaoPagamento' => $this->descricaoSolicitacaoPagamento,
             'codigoConciliacaoSolicitacao' => $this->codigoConciliacaoSolicitacao,
-        ], fn($value) => ! is_null($value) && ! (is_string($value) && empty(trim($value))));
+        ], fn ($value) => ! is_null($value) && ! (is_string($value) && empty(trim($value))));
     }
 
     public function jsonSerialize(): mixed
