@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace UnderWork\BancoDoBrasilApiV2\ValueObjects\BBPay\Solicitacao;
 
-
 use UnderWork\BancoDoBrasilApiV2\Contracts\BBSerialize;
 use UnderWork\BancoDoBrasilApiV2\ValueObjects\BBPay\Solicitacao\Objects\Devedor;
 use UnderWork\BancoDoBrasilApiV2\ValueObjects\BBPay\Solicitacao\Objects\FormaPagamento;
@@ -49,7 +48,7 @@ final class CriarSolicitacao implements BBSerialize
         }
 
         if (! is_null($this->formasPagamento)) {
-            $array['formasPagamento'] = $this->formasPagamento;
+            $array['formasPagamento'] = array_map(fn (FormaPagamento $forma) => $forma->toArray(), $this->formasPagamento);
         }
 
         return $array;

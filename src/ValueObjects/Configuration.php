@@ -16,6 +16,7 @@ use UnderWork\BancoDoBrasilApiV2\Enums\Environment;
  * @property string $clientSecret
  * @property Environment $environment
  * @property int $maxRetries
+ * @property ?string $scope
  */
 final class Configuration implements BBConfiguration
 {
@@ -28,6 +29,7 @@ final class Configuration implements BBConfiguration
         public readonly ?string $cert = null,
         public readonly ?string $verify = null,
         public readonly ?string $sslKey = null,
+        public readonly ?string $scope = null,
     ) {
         if ($this->maxRetries < 0) {
             throw new \InvalidArgumentException('Max retries must be greater than or equal to 0.');

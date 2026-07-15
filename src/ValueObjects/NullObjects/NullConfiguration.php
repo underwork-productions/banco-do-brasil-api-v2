@@ -15,7 +15,11 @@ final class NullConfiguration implements BBConfiguration
         private string $clientId = '',
         private string $clientSecret = '',
         private Environment $environment = Defaults::DEFAULT_ENVIRONMENT,
-        private int $maxRetries = Defaults::DEFAULT_MAX_RETRIES
+        private int $maxRetries = Defaults::DEFAULT_MAX_RETRIES,
+        private ?string $cert = null,
+        private ?string $verify = null,
+        private ?string $sslKey = null,
+        private ?string $scope = null,
     ) {
         if ($this->maxRetries < 0) {
             throw new \InvalidArgumentException('Max retries must be greater than or equal to 0.');

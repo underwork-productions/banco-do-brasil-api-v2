@@ -15,5 +15,6 @@ namespace UnderWork\BancoDoBrasilApiV2\Contracts;
  * @property-read ?string $cert
  * @property-read ?string $sslKey
  * @property-read ?string $verify
+ * @property-read ?string $scope
  */
 interface BBConfiguration {}

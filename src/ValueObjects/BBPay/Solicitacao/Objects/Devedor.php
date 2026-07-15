@@ -28,16 +28,16 @@ class Devedor implements BBSerialize
      */
     public function __construct(
         $tipoDocumento,
-        public readonly int $numeroDocumento,
-        public readonly int $cep,
-        public readonly string $endereco,
-        public readonly string $bairro,
-        public readonly string $cidade,
-        public readonly string $uf,
-        public readonly string $email,
-        public readonly int $dddTelefone,
-        public readonly int $telefone,
-        public readonly ?int $cpfRepresentanteEmpresa,
+        public readonly string $numeroDocumento,
+        public readonly ?string $cep = null,
+        public readonly ?string $endereco = null,
+        public readonly ?string $bairro = null,
+        public readonly ?string $cidade = null,
+        public readonly ?string $uf = null,
+        public readonly ?string $email = null,
+        public readonly ?string $dddTelefone = null,
+        public readonly ?string $telefone = null,
+        public readonly ?string $cpfRepresentanteEmpresa = null,
     ) {
         $this->tipoDocumento($tipoDocumento);
     }
@@ -51,7 +51,7 @@ class Devedor implements BBSerialize
 
     public function toArray(): array
     {
-        return [
+        return array_filter([
             'tipoDocumento' => $this->tipoDocumento->value,
             'numeroDocumento' => $this->numeroDocumento,
             'cep' => $this->cep,
@@ -63,7 +63,7 @@ class Devedor implements BBSerialize
             'dddTelefone' => $this->dddTelefone,
             'telefone' => $this->telefone,
             'cpfRepresentanteEmpresa' => $this->cpfRepresentanteEmpresa,
-        ];
+        ], fn ($value) => ! is_null($value) && ! (is_string($value) && empty(trim($value))));
     }
 
     public function jsonSerialize(): mixed

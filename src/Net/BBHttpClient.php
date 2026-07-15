@@ -56,6 +56,10 @@ class BBHttpClient implements BBHttpClientContract
             'client_secret' => $configuration->clientSecret,
         ];
 
+        if ($configuration->scope !== null && $configuration->scope !== '') {
+            $oAuthConfig['scope'] = $configuration->scope;
+        }
+
         $grantType = new ClientCredentials($oAuthClient, $oAuthConfig);
 
         return new OAuth2Middleware($grantType);
@@ -64,7 +68,7 @@ class BBHttpClient implements BBHttpClientContract
     private function createInjectQueryParamMiddleware(BBConfiguration $configuration)
     {
         return GuzzleHttp\Middleware::mapRequest(
-            fn(RequestInterface $request) => $request->withUri(
+            fn (RequestInterface $request) => $request->withUri(
                 GuzzleHttp\Psr7\Uri::withQueryValue($request->getUri(), 'gw-dev-app-key', $configuration->developerApplicationKey)
             )
         );
@@ -97,9 +101,8 @@ class BBHttpClient implements BBHttpClientContract
     }
 
     /**
-     *
-     * @param BBRequest $request
      * @return object {statusCode: int, body: mixed, headers: list<list<string>>}
+     *
      * @throws GuzzleException
      */
     public function send(BBRequest $request)
